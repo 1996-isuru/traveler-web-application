@@ -23,7 +23,9 @@ function App() {
     <Router>
       <NavBar />
       <Switch>
-        {/* <Route exact path="/" component={ Landing } /> */}
+        <Route exact path="/" component={Landing} />
+        <Route exact path="/" component={DashBoard} />
+        <Route exact path="" component={NotFound} />
       </Switch>
     </Router>
     </div>
