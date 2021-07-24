@@ -11,16 +11,16 @@ const Landing = ({ isAuthenticated }) => {
         <section className="landing">
             <div className="dark-overlay">
                 <div>
-                    <h1>Traveler</h1>
-                    <p>Register, Login &amp; Login and Logout</p>
+                    {/* <h1>Traveler</h1>
+                    <p>Register, Login &amp; Login and Logout</p> */}
                     <br />
                     <div className="button">
-                    <Link to="/register">
+                    {/* <Link to="/register">
                         Register
                     </Link>
                     <Link to="/login">
                         Login
-                    </Link>
+                    </Link> */}
 
                     </div>
                 </div>
