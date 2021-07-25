@@ -10,6 +10,7 @@ import {
   LOGOUT,
 } from "./types";
 import setAuthToken from "../utils.js/setAuthToken";
+import localhost from "../constants/links";
 
 export const loadUser = () => async (dispatch) => {
   if (localStorage.token) {
@@ -30,17 +31,27 @@ export const loadUser = () => async (dispatch) => {
 
 //register user
 export const register =
-  ({ name, email, password }) =>
+  ({ userName, email, password, checked }) =>
   async (dispatch) => {
+    console.log("action auth.js file ");
     const config = {
       headers: {
         "Content-Type": "application/json",
       },
     };
-    const body = JSON.stringify({ name, email, password });
-
+    const body = JSON.stringify({ userName, email, password, checked });
+    console.log(userName);
+    console.log(password);
+    console.log(email);
+    console.log(checked);
+    console.log(localhost);
+    
     try {
-      const res = await axios.post("/users");
+      const res = await axios.post(
+        (localhost+"/user/signup"),
+        body,
+        config,
+        );
       dispatch({
         type: REGISTER_SUCCESS,
         playload: res.data,
@@ -69,7 +80,7 @@ export const login =
     const body = JSON.stringify({ email, password });
 
     try {
-      const res = await axios.post("/users");
+      const res = await axios.post(localhost + "/user/login");
       dispatch({
         type: LOGIN_SUCCESS,
         playload: res.data,

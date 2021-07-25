@@ -26,6 +26,7 @@ export default function red(state = initialState, action) {
         loading: false,
         user: payload,
       };
+    case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
       localStorage.getItem("token", payload.token);
       return {

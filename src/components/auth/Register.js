@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import { register } from "../../actions/auth";
 import Alert from "../layouts/Alerts";
 import { setAlert } from "../../actions/alert";
+import { bindActionCreators } from "redux";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -14,18 +15,24 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     password2: "",
   });
 
-  const { name, email, password, password2 } = formData;
+  const { userName, email, password, password2 } = formData;
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const onSubmit = async (e) => {
+    // console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
     e.preventDefault();
     if (password !== password2) {
+      // console.log("Password not same");
       setAlert("password do not match", "danger");
+      
     } else {
-      register({ name, email, password });
+      // console.log("Password same");
+      console.log(userName);
+      const checked = "hotelManagement"
+      register({ userName, email, password, checked });
     }
   };
 
@@ -48,8 +55,8 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
           <input
             type="text"
             placeholder="Name"
-            name="name"
-            value={name}
+            name="userName"
+            value={userName}
             onChange={(e) => onChange(e)}
           />
         </div>
@@ -91,4 +98,15 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   );
 };
 
-export default Register;
+
+Register.propTypes = {
+	setAlert: PropTypes.func.isRequired,
+	register: PropTypes.func.isRequired,
+	isAuthenticated: PropTypes.bool,
+};
+
+const mapStateToProps = (state) => ({
+	isAuthenticated: state.auth.isAuthenticated,
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);
