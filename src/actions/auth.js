@@ -45,13 +45,9 @@ export const register =
     console.log(email);
     console.log(checked);
     console.log(localhost);
-    
+
     try {
-      const res = await axios.post(
-        (localhost+"/user/signup"),
-        body,
-        config,
-        );
+      const res = await axios.post(localhost + "/user/signup", body, config);
       dispatch({
         type: REGISTER_SUCCESS,
         playload: res.data,
@@ -60,7 +56,7 @@ export const register =
       const errors = err.response.data.errors;
 
       if (errors) {
-        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+        errors.forEach((error) => dispatch(setAlert(error.message, "danger")));
       }
       dispatch({
         type: REGISTER_FAIL,
@@ -78,17 +74,18 @@ export const login =
       },
     };
     const body = JSON.stringify({ email, password });
-
+    // console.log("auth action");
+    // console.log(password);
+    // console.log(email);
     try {
-      const res = await axios.post(localhost + "/user/login");
+      const res = await axios.post(localhost + "/user/login", body, config);
       dispatch({
         type: LOGIN_SUCCESS,
         playload: res.data,
       });
       dispatch(loadUser());
     } catch (err) {
-      const errors = err.response.data.errors;
-
+      const errors = err.response.data;
       if (errors) {
         errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
       }
