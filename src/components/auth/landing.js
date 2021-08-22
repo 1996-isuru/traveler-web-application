@@ -42,7 +42,7 @@ export default function Landing() {
                 </Link>
               </li>
               <li class="nav-item mx-0 mx-lg-1">
-                <Link class="nav-link py-3 px-0 px-lg-3 rounded" to="/signup">
+                <Link class="nav-link py-3 px-0 px-lg-3 rounded" to="/register">
                   SignUp
                 </Link>
               </li>

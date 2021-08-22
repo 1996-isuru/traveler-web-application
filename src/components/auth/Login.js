@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { login } from "../../actions/auth";
-import Alert from "../layouts/Alerts";
-import { bindActionCreators } from "redux";
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -23,7 +18,7 @@ const Login = ({ login, isAuthenticated }) => {
     // console.log("login page");
     // console.log(email);
     // console.log(password);
-    login({email, password});
+    // login({email, password});
     // console.log(email);
   };
 
@@ -39,7 +34,6 @@ const Login = ({ login, isAuthenticated }) => {
         <i className="fas fa-user"></i>
         Logging Your Account
       </p>
-      <Alert />
       <br />
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">
@@ -70,13 +64,5 @@ const Login = ({ login, isAuthenticated }) => {
   );
 };
 
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool,
-};
 
-const mapStateToProps = (state) => ({
-  isAuthenticated: state.auth.isAuthenticated,
-});
-
-export default connect(mapStateToProps, { login })(Login);
+export default Login;
