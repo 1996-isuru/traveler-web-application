@@ -26,17 +26,20 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         userName,
         email,
         password,
-        checked
+        checked,
       };
 
       console.log(newStudent);
       axios
         .post("http://localhost:3000/user/signup", newStudent)
-        .then(() => {
-          history.push("/login");
+        .then((response) => {
+          if (response.data.message === "User created") {
+            history.push("/login");
+          }
         })
         .catch((err) => {
-          alert(err);
+          // alert(err);
+          alert("Mail exists.");
         });
     } else {
       alert("Password not same");
