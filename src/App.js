@@ -1,9 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-// import NotFound from "./components/NotFound";
-// import DashBoard from "./components/DashBoard";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Landing from "./components/auth/landing";

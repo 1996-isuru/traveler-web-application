@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
+  let history = useHistory();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,24 +19,29 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   };
 
   const onSubmit = async (e) => {
-    // console.log("kkkkkkkkkkkkkkkkkkkkkkkkkkkk");
     e.preventDefault();
-    // if (password !== password2) {
-    //   // console.log("Password not same");
-    //   setAlert("password do not match", "danger");
-      
-    // } else {
-    //   // console.log("Password same");
-    //   console.log(userName);
-    //   const checked = "hotelManagement"
-    //   register({ userName, email, password, checked });
-    // }
-  };
+    const checked = "hotelManagement";
+    if (formData.password === formData.password2) {
+      const newStudent = {
+        userName,
+        email,
+        password,
+        checked
+      };
 
-  //redirect if logged in
-  // if (isAuthenticated) {
-  //   return <Redirect to="/dashboard"></Redirect>;
-  // }
+      console.log(newStudent);
+      axios
+        .post("http://localhost:3000/user/signup", newStudent)
+        .then(() => {
+          history.push("/login");
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    } else {
+      alert("Password not same");
+    }
+  };
 
   return (
     <div className="register-form">
@@ -42,7 +50,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         <i className="fas fa-user"></i>
         Create Your Account
       </p>
-  
+
       <br />
       <form className="form" onSubmit={(e) => onSubmit(e)}>
         <div className="form-group">

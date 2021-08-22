@@ -3,6 +3,12 @@ import { Link, Redirect } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 
 const Login = ({ login, isAuthenticated }) => {
+
+  // const [userName, setUserName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [repassword, setrePassword] = useState("");
+
   let history = useHistory();
   const [formData, setFormData] = useState({
     email: "",
@@ -13,15 +19,15 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    // console.log("login page");
-    // console.log(email);
-    // console.log(password);
-    // login({email, password});
-    // console.log(email);
+    console.log(formData.email);
+    console.log(formData.password);
+
+    
     history.push("/travelerhome");
   };
 
