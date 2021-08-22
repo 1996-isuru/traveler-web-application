@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Login = ({ login, isAuthenticated }) => {
+  let history = useHistory();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -20,6 +22,7 @@ const Login = ({ login, isAuthenticated }) => {
     // console.log(password);
     // login({email, password});
     // console.log(email);
+    history.push("/travelerhome");
   };
 
   //redirect if logged in
@@ -63,6 +66,5 @@ const Login = ({ login, isAuthenticated }) => {
     </div>
   );
 };
-
 
 export default Login;
