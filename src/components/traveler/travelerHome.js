@@ -1,6 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const TravelerHome = () => {
+  //getting async storage data
+//   const [userToken, setToken] = useState(null);
+//   const [userEmail, setEmail] = useState(null);
+//   const [userName, setUserName] = useState(null);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      const email = localStorage.getItem("userEmail");
+      const usertype = localStorage.getItem("usertype");
+      const token = localStorage.getItem("token");
+
+    //   setEmail(email);
+        console.log(email);
+        console.log(usertype);
+        console.log(token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  //getting async storage data
 
   return (
     <div className="login-form">
@@ -10,7 +34,6 @@ const TravelerHome = () => {
         TravelerHome
       </p>
       <br />
-      
     </div>
   );
 };

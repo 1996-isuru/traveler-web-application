@@ -10,7 +10,6 @@ const AdminHome = () => {
         AdminHome
       </p>
       <br />
-      
     </div>
   );
 };

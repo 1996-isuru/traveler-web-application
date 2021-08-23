@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const Register = ({ setAlert, register, isAuthenticated }) => {
+const Register = () => {
   let history = useHistory();
   const [formData, setFormData] = useState({
     name: "",
@@ -21,17 +21,17 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const checked = "hotelManagement";
-    if (formData.password === formData.password2) {
-      const newStudent = {
+    if (password === password2) {
+      const newUser = {
         userName,
         email,
         password,
         checked,
       };
-
-      console.log(newStudent);
+      console.log("ssssssss");
+      console.log(email);
       axios
-        .post("http://localhost:3000/user/signup", newStudent)
+        .post("http://localhost:3000/user/signup", newUser)
         .then((response) => {
           if (response.data.message === "User created") {
             history.push("/login");

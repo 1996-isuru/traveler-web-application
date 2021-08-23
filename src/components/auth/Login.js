@@ -1,14 +1,9 @@
 import React, { useState } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
+import axios from "axios";
 
-const Login = ({ login, isAuthenticated }) => {
-
-  // const [userName, setUserName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [repassword, setrePassword] = useState("");
-
+const Login = () => {
   let history = useHistory();
   const [formData, setFormData] = useState({
     email: "",
@@ -19,22 +14,37 @@ const Login = ({ login, isAuthenticated }) => {
 
   const onChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData.email);
-    console.log(formData.password);
+    const userDetails = {
+      email,
+      password,
+    };
 
-    
-    history.push("/travelerhome");
+    axios
+      .post("http://localhost:3000/user/login", userDetails)
+      .then((result) => {
+        if (result.data.message === "Auth successful") {
+          //add details in localstorage
+          localStorage.setItem("useremail", result.data.userEmail);
+          localStorage.setItem("usertype", result.data.userType);
+          localStorage.setItem("token", result.data.token);
+
+          if (result.data.userType === "hotelManagement") {
+            history.push("/travelerhome");
+          } else if (result.data.userType === "admin") {
+            history.push("/adminhome");
+          }
+        } if (result.data.message === "Auth faild") {
+          alert("cannot login");
+        }
+      })
+      .catch((err) => {
+        alert("wrong details.");
+      });
   };
-
-  //redirect if logged in
-  if (isAuthenticated) {
-    return <Redirect to="/dashboard"></Redirect>;
-  }
 
   return (
     <div className="login-form">
