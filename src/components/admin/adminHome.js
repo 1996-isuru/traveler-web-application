@@ -3,7 +3,7 @@ import "../../App.css";
 import avataaars from "../../assets/img/avataaars.svg";
 import { Link } from "react-router-dom";
 
-export default function hotelAdmin() {
+export default function HomeAdmin() {
   return (
     <div>
       <nav
@@ -50,10 +50,6 @@ export default function hotelAdmin() {
             </div>
             <div class="divider-custom-line"></div>
           </div>
-          {/* <!-- Masthead Subheading--> */}
-          {/* <p class="masthead-subheading font-weight-light mb-0">
-            Graphic Artist - Web Designer - Illustrator
-          </p> */}
         </div>
       </header>
       {/* <!-- About Section--> */}
